@@ -1,0 +1,90 @@
+.intro{
+    background-color: #66bfbf;
+    padding-top: 300px;;;
+    position: relative;
+    text-align: center;
+    font-family: sans-serif;
+
+}
+.mountain
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    
+}
+.cloud1{
+    position: absolute;
+    left: 100px;
+    top: 200px;
+    width:200px;
+    
+    
+}
+.cloud2{
+    position: absolute;
+    right: 150px;
+    top: 275px;
+    width: 200px;
+}
+
+.aboutme{
+    padding-top: 100px;
+}
+.me{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+}
+.aboutme h3{
+    text-align: center;
+    font-size:250%;
+    color:#66bfbf;
+}
+.aboutme p{
+    text-align: center;
+    font-size: 150%;
+}
+
+hr{
+    border: dotted #eaf6f6 6px;
+    border-bottom: none;
+    width: 5%;
+    margin: 100px auto;
+
+}
+.Skills h3{
+    text-align: center;
+    font-size: 250%;
+    color: #66bfbf;
+    
+    
+}
+.Skills p {
+    
+    font-size: 130%;
+    padding-bottom: 30px;
+    width: 600px;
+    margin-left: 1000px;
+    margin-right: auto;
+    display:block;
+}
+.certification{
+    float: left;
+    height: 300px;
+    width: 300px;
+}
+.airbnb{
+    float: left;
+    width: 300px;
+    height: 300px;
+}
+.shoes{
+    float:left;
+    width: 300px;
+    height: 300px;
+}
