@@ -159,3 +159,251 @@ public class Logic {
         }	  	   	      	   	       	     	    	
     }	  	   	      	   	       	     	    	
 }
+
+
+private void playRound(Player currentPlayer, Player opponentPlayer) {
+    if (!currentPlayer.isDone()) {
+        System.out.println(currentPlayer.getName() + "'s turn:");
+        System.out.println("Your Cards: " + currentPlayer.getCards());
+        System.out.println("Do you want to twist? (Y/N)");
+        String choice = scanner.nextLine();
+
+        if (choice.equalsIgnoreCase("Y")) {
+            Card newCard = dealer.dealCard();
+            currentPlayer.addCard(newCard);
+            int currentPlayerScore = calculateScore(currentPlayer);
+
+            if (currentPlayerScore == -1) {
+                int currentScore = calculateScoreWithAces(currentPlayer);
+                System.out.println(currentPlayer.getName() + " busted with a score of " + currentScore + "!");
+                currentPlayer.setDone(true);
+                opponentPlayer.setDone(true);
+                System.out.println(currentPlayer.getName() + "'s cards: " + currentPlayer.getCards()); // Print busted player's cards
+                System.out.println(opponentPlayer.getName() + "'s cards: " + opponentPlayer.getCards()); // Print opponent's cards
+                return;
+            }
+        } else {
+            System.out.println(currentPlayer.getName() + " sticks.");
+            currentPlayer.setDone(true);
+        }
+    }
+}
+
+
+private void determineWinner() {
+    int score1 = calculateScoreWithAces(player1);
+    int score2 = calculateScoreWithAces(player2);
+
+    if (score1 > 21 && score2 > 21) {
+        System.out.println("Both player 1 and 2 have busted. It's a tie!");
+    } else if (score1 > 21) {
+        System.out.println(player2.getName() + " wins with a score of " + score2 + "!");
+        System.out.println("Player 2's cards: " + player2.getCards());
+    } else if (score2 > 21) {
+        System.out.println(player1.getName() + " wins with a score of " + score1 + "!");
+        System.out.println("Player 1's cards: " + player1.getCards());
+    } else if (score1 > score2) {
+        System.out.println(player1.getName() + " wins with a score of " + score1 + "!");
+        System.out.println("Player 1's cards: " + player1.getCards());
+    } else if (score2 > score1) {
+        System.out.println(player2.getName() + " wins with a score of " + score2 + "!");
+        System.out.println("Player 2's cards: " + player2.getCards());
+    } else {
+        System.out.println("It's a tie!");
+    }
+}
+
+
+private void determineWinner() {
+    int score1 = calculateScoreWithAces(player1);
+    int score2 = calculateScoreWithAces(player2);
+
+    if (score1 > 21) {
+        System.out.println(player2.getName() + " wins with a score of " + score2 + "!");
+        System.out.println("Player 2's cards: " + player2.getCards());
+    } else if (score2 > 21) {
+        System.out.println(player1.getName() + " wins with a score of " + score1 + "!");
+        System.out.println("Player 1's cards: " + player1.getCards());
+    } else if (score1 > score2) {
+        System.out.println(player1.getName() + " wins with a score of " + score1 + "!");
+        System.out.println("Player 1's cards: " + player1.getCards());
+    } else if (score2 > score1) {
+        System.out.println(player2.getName() + " wins with a score of " + score2 + "!");
+        System.out.println("Player 2's cards: " + player2.getCards());
+    } else {
+        System.out.println("It's a tie!");
+    }
+}
+
+
+private int calculateScoreWithAces(Player player) {
+    int score = 0;
+    int numOfAces = 0;
+
+    for (Card card : player.getCards()) {
+        String value = card.getValue();
+
+        if (value.equals("Jack") || value.equals("Queen") || value.equals("King")) {
+            score += 10;
+        } else if (value.equals("Ace")) {
+            score += 11;
+            numOfAces++;
+        } else {
+            score += Integer.parseInt(value);
+        }
+    }
+
+    // Adjust the score if necessary
+    while (score > 21 && numOfAces > 0) {
+        score -= 10;
+        numOfAces--;
+    }
+
+    return score;
+}
+
+private int calculateScoreWithAces(Player player) {
+    int score = 0;
+    int numOfAces = 0;
+
+    // Calculate the score without considering aces
+    for (Card card : player.getCards()) {
+        String value = card.getValue();
+        if (value.equals("Jack") || value.equals("Queen") || value.equals("King")) {
+            score += 10;
+        } else if (value.equals("Ace")) {
+            numOfAces++;
+        } else {
+            score += Integer.parseInt(value);
+        }
+    }
+
+    // Add aces to the score considering the best possible scenario
+    for (int i = 0; i <= numOfAces; i++) {
+        int currentScore = score + (numOfAces - i) * 11 + i;
+        if (currentScore <= 21) {
+            score = currentScore;
+            break;
+        }
+    }
+
+    return score;
+}
+
+private int calculateScoreWithAces(Player player) {	  	   	      	   	       	     	    	
+    int score = 0;	  	   	      	   	       	     	    	
+    int numOfAces = 0;	  	   	      	   	       	     	    	
+	  	   	      	   	       	     	    	
+    // Calculate the score without considering aces	  	   	      	   	       	     	    	
+    for (Card card : player.getCards()) {	  	   	      	   	       	     	    	
+        String value = card.getValue();	  	   	      	   	       	     	    	
+        if (value.equals("Jack") || value.equals("Queen") || value.equals("King")) {	  	   	      	   	       	     	    	
+            score += 10;	  	   	      	   	       	     	    	
+        } else if (value.equals("Ace")) {	  	   	      	   	       	     	    	
+            numOfAces++;	  	   	      	   	       	     	    	
+        } else {	  	   	      	   	       	     	    	
+            score += Integer.parseInt(value);	  	   	      	   	       	     	    	
+        }	  	   	      	   	       	     	    	
+    }	  	   	      	   	       	     	    	
+	  	   	      	   	       	     	    	
+    // Add aces to the score considering the best possible scenario	  	   	      	   	       	     	    	
+    for (int i = 0; i <= numOfAces; i++) {	  	   	      	   	       	     	    	
+        int currentScore = score + (numOfAces - i) * 11 + i;	  	   	      	   	       	     	    	
+        if (currentScore <= 21) {	  	   	      	   	       	     	    	
+            score = currentScore;	  	   	      	   	       	     	    	
+            break;	  	   	      	   	       	     	    	
+        }	  	   	      	   	       	     	    	
+    }	  	   	      	   	       	     	    	
+	  	   	      	   	       	     	    	
+    return score;	  	   	      	   	       	     	    	
+}
+
+
+private int calculateScoreWithAces(Player player) {
+    int score = 0;
+    int numOfAces = 0;
+
+    // Calculate the score without considering aces
+    for (Card card : player.getCards()) {
+        String value = card.getValue();
+        if (value.equals("Jack") || value.equals("Queen") || value.equals("King")) {
+            score += 10;
+        } else if (value.equals("Ace")) {
+            numOfAces++;
+        } else {
+            score += Integer.parseInt(value);
+        }
+    }
+
+    // Add aces to the score considering the best possible scenario
+    for (int i = 0; i <= numOfAces; i++) {
+        int currentScore = score + (numOfAces - i) * 11 + i;
+        if (currentScore <= 21) {
+            score = currentScore;
+            break;
+        }
+    }
+
+    return score;
+}
+
+private int calculateScoreWithAces(Player player) {
+    int score = 0;
+    int numOfAces = 0;
+
+    // Calculate the score without considering aces
+    for (Card card : player.getCards()) {
+        String value = card.getValue();
+        if (value.equals("Jack") || value.equals("Queen") || value.equals("King")) {
+            score += 10;
+        } else if (value.equals("Ace")) {
+            numOfAces++;
+        } else {
+            score += Integer.parseInt(value);
+        }
+    }
+
+    // Add aces to the score considering the best possible scenario
+    for (int i = 0; i <= numOfAces; i++) {
+        int currentScore = score + (numOfAces - i) * 11 + i;
+        if (currentScore <= 21) {
+            score = currentScore;
+            break;
+        }
+    }
+
+    // If the adjusted score is greater than 21, and there are aces in hand,
+    // adjust the value of aces to prevent busting
+    while (score > 21 && numOfAces > 0) {
+        score -= 10; // Adjust the value of ace from 11 to 1
+        numOfAces--; // Reduce the count of aces
+    }
+
+    return score;
+}
+
+
+// Method to determine the winner of the game
+private void determineWinner() {
+    int score1 = calculateScoreWithAces(player1); // Calculate score for player 1
+    int score2 = calculateScoreWithAces(player2); // Calculate score for player 2
+
+    // Print both players' cards
+    System.out.println("Player 1's cards: " + player1.getCards() + " (Score: " + score1 + ")");
+    System.out.println("Player 2's cards: " + player2.getCards() + " (Score: " + score2 + ")");
+
+    // Check if both players busted
+    if (score1 > 21 && score2 > 21) {
+        System.out.println("Both players busted. It's a tie!");
+    } else if (score1 > 21) {
+        System.out.println(player2.getName() + " wins!");
+    } else if (score2 > 21) {
+        System.out.println(player1.getName() + " wins!");
+    } else if (score1 > score2) {
+        System.out.println(player1.getName() + " wins!");
+    } else if (score2 > score1) {
+        System.out.println(player2.getName() + " wins!");
+    } else {
+        System.out.println("It's a tie!");
+    }
+}
