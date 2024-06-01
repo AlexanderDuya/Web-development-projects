@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "C:/Users/maria/OneDrive/Desktop/4.0 EJS"
+		},
+		{
+			"path": "C:/Users/maria/OneDrive/Desktop/4.1 EJS Tags"
+		},
+		{
+			"path": "C:/Users/maria/OneDrive/Desktop/4.3 EJS Partials"
+		},
+		{
+			"path": "C:/Users/maria/OneDrive/Desktop/4.4 Band Generator Project"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Web development projects"
+	}
+}
