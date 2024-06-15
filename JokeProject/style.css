@@ -1,6 +1,7 @@
 body{
     font-family: sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -38,5 +39,20 @@ button:hover{
 
 .emoji{
     background-color: black;
+    width: 400px;
+    height: auto;
+    padding: 10px;
+    
 
+}
+
+.powered{
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
+    
 }
