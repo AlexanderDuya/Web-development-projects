@@ -18,7 +18,7 @@ btn.addEventListener("click", () =>{
                         </button>
                     </div>
                     <div class="details">
-                        <p>${data[0].meanings[0].partOfSpeech}</p>
+                        <p>${data[0].meanings[0].partsOfSpeech}</p>
                         <p>/sample/</p>
                      </div>
                      <p class="word-meaning">
