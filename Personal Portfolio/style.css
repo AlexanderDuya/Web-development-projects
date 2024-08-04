@@ -224,6 +224,7 @@ section .header{
 .project-image{
     margin-top: 20px;
     margin-bottom: 20px;
+    border-radius: 15px;
 }
 
 @media (width < 900px){
