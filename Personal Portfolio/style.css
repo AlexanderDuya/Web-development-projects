@@ -221,6 +221,11 @@ section .header{
     
 }
 
+.project-image{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 @media (width < 900px){
     .nav-links{
         display: none;
